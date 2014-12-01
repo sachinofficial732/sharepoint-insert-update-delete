@@ -1,0 +1,46 @@
+<%@ Control Language="VB" AutoEventWireup="false" CodeFile="test1.ascx.vb" Inherits="test1" %>
+
+
+<!DOCTYPE html>
+
+    <div>
+        <div>
+            <asp:Label ID="LBLTITLE" runat="server" Text="Title"></asp:Label>
+            <asp:TextBox ID="txttitle" runat="server"></asp:TextBox>
+        </div>
+
+        <div>
+            <asp:Label ID="LBLNAME" runat="server" Text="Name"></asp:Label>
+            <asp:TextBox ID="txtname" runat="server"></asp:TextBox>
+        </div>
+        <div>
+            <asp:Label ID="LBLADDRESS" runat="server" Text="Address"></asp:Label>
+            <asp:TextBox ID="txtaddress" runat="server"></asp:TextBox>
+        </div>
+        <div>
+            <asp:Label ID="LBLGENDER" runat="server" Text="Gender"></asp:Label>
+            <asp:DropDownList ID="dd1" runat="server">
+                <asp:ListItem>Male</asp:ListItem>
+                <asp:ListItem>Female</asp:ListItem>
+            </asp:DropDownList>
+        </div>
+        <div>
+    <asp:Label ID="LBLARRAY1" runat="server" Text="Array1"></asp:Label>
+    <asp:TEXTBOX ID="txtArray1" runat="server"></asp:TEXTBOX>
+</div>
+<div>
+<asp:Label ID="LBLARRAY2" runat="server" Text="Array2"></asp:Label>
+    <asp:TEXTBOX ID="txtArray2" runat="server"></asp:TEXTBOX>
+</div>
+<div>
+    <asp:Label ID="LBLADD" runat="server" Text="Add"></asp:Label>
+    <asp:TEXTBOX ID="txtAdd" runat="server"></asp:TEXTBOX>
+</div>
+        <div>
+            <asp:Button ID="LBLSUBMIT" runat="server" Text="Submit" Style="color:black;"/>
+            <asp:Button ID="LBLCANCEL" runat="server" Text="Cancel" Style="color:black;"/>
+               <asp:Button ID="btndelete" runat="server" Text="delete" Style="color:black;" />
+        </div>
+
+    
+    </div>
