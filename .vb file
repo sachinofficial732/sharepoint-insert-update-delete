@@ -1,0 +1,105 @@
+Imports Microsoft.SharePoint
+Imports System
+
+
+
+
+Partial Class test1
+    Inherits System.Web.UI.UserControl
+    Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If Not IsNothing(Request.QueryString("PID")) Then
+            GETVALUE()
+        End If
+
+    End Sub
+    Protected Sub LBLSUBMIT_Click(sender As Object, e As EventArgs) Handles LBLSUBMIT.Click
+        If Not IsNothing(Request.QueryString("PID")) Then
+            Update()
+        Else
+            Insert()
+        End If
+
+    End Sub
+
+    Protected Sub LBLCANCEL_Click(sender As Object, e As EventArgs) Handles LBLCANCEL.Click
+        CLEARCONTROL()
+    End Sub
+    Public Sub CLEARCONTROL()
+        txtAdd.Text = ""
+        txtaddress.Text = ""
+        txtArray1.Text = ""
+        txtArray2.Text = ""
+        txtname.Text = ""
+        txttitle.Text = ""
+
+    End Sub
+    Public Sub Update()
+        Dim Site As SPSite = SPContext.Current.Web.Site
+        Dim Web As SPWeb = Site.OpenWeb
+
+        Dim list As SPList = Web.Lists("TEST_28-10-2014")
+        Dim item As SPListItem = list.GetItemById(ID)
+
+        item("Title") = txttitle.Text
+        item("Name") = txtname.Text
+        item("Address") = txtAdd.Text
+        item("Gender") = dd1.SelectedItem.Text
+        item("add") = txtAdd.Text
+        item("array1") = txtArray1.Text
+        item("array2") = txtArray2.Text
+        item.Update()
+        CLEARCONTROL()
+        '    LBLSUCCESS.Text = "DATA UPADATE SUCESSFULLY "
+    End Sub
+    Public Sub INSERT()
+        Dim Site As SPSite = SPContext.Current.Web.Site
+        Dim web As SPWeb = Site.OpenWeb
+        Dim list As SPList = web.Lists("TEST_28-10-2014")
+        Dim item As SPListItem = list.Items.Add
+        item("Title") = txttitle.Text
+        item("name") = txtname.Text
+        item("Address") = txtAdd.Text
+        item("Gender") = dd1.SelectedValue
+        item("add") = txtAdd.Text
+        item("array1") = txtArray1.Text
+        item("array2") = txtArray2.Text
+        item.Update()
+        CLEARCONTROL()
+        ' LBLID.TEXT = item.ID
+        'LBLSUCCESS.Text = "DATA INSERT SUCESSFULLY   " & item.ID
+
+    End Sub
+
+    Public Sub GETVALUE()
+        Dim id As Integer = CInt(Request.QueryString("PID"))
+        Dim Site As SPSite = SPContext.Current.Web.Site
+        Dim web As SPWeb = Site.OpenWeb
+        Dim List As SPList = web.Lists("TEST_28-10-2014")
+        Dim item As SPListItem = List.GetItemById(id)
+        txttitle.Text = item("Title")
+        txtname.Text = item("Name")
+        txtAdd.Text = item("Address")
+        dd1.SelectedValue = item("Gender")
+        txtAdd.Text = item("add")
+        txtArray1.Text = item("array1")
+        txtArray2.Text = item("array2")
+
+
+    End Sub
+
+    Public Sub Delete()
+        Dim id As Integer = CInt(Request.QueryString("PID"))
+        Dim site As SPSite = SPContext.Current.Web.Site
+        Dim web As SPWeb = site.OpenWeb
+        Dim list As SPList = web.Lists("TEST_28-10-2014")
+        Dim item As SPListItem = list.GetItemById(ID)
+        item.Delete()
+
+    End Sub
+
+
+    Protected Sub btndelete_Click(sender As Object, e As EventArgs) Handles btndelete.Click
+        Delete()
+        Response.Redirect("/Pages/testcode.aspx")
+    End Sub
+End Class
